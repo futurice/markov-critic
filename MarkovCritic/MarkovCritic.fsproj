@@ -53,6 +53,7 @@
     <Compile Include="Analyzer.fs" />
     <Compile Include="Critiquer.fs" />
     <Compile Include="Program.fs" />
+    <None Include="MarkovProto.fsx" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
