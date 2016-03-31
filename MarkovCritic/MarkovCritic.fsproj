@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <None Include="App.config" />
-    <Compile Include="Markov.fs" />
+    <Compile Include="Interpreter.fs" />
+    <Compile Include="Analyzer.fs" />
+    <Compile Include="Critiquer.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <PropertyGroup>

@@ -20,7 +20,9 @@ let run =
 
     printfn "Enter a text corpus to generate the frequency table."
     let input_corpus = readlines()    
-    let tokens = input_corpus |> Seq.collect (fun line -> line.Split(separators, StringSplitOptions.RemoveEmptyEntries))       
+    let tokens = input_corpus |> Seq.collect (fun line -> line.Split(separators, StringSplitOptions.RemoveEmptyEntries))   
+    
+    printfn "%A" (Seq.toList tokens)
 
     let freq_table = Map.empty
     let freq_table = tokens 
