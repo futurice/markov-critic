@@ -9,4 +9,5 @@ let interpret (mp3File: string) =
                 Album = file.Tag.Album;
                 Year = file.Tag.Year;
                 Performers = Array.toList file.Tag.Performers}
+
     {Id3 = id3; Duration = file.Properties.Duration}
