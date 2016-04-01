@@ -11,10 +11,6 @@ let rec private parseCommandLineRec args optionsSoFar =
             match xs with 
                 | [] -> None
                 | x::xss -> parseCommandLineRec xss { optionsSoFar with Path = x} 
-        | "-f"::xs | "--file"::xs -> 
-            match xs with 
-                | [] -> None
-                | x::xss -> parseCommandLineRec xss { optionsSoFar with File = x} 
 
         | "-h"::xs | "--help"::xs ->
             printf """ 
@@ -29,7 +25,6 @@ Available options:
             parseCommandLineRec xs optionsSoFar 
 
 let parseCommandLine args = 
-    let defaultOptions = { File = "";
-                           Path = "./"}
+    let defaultOptions = { Path = "./" }
 
     parseCommandLineRec args defaultOptions

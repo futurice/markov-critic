@@ -3,10 +3,9 @@
 open TagLib; 
 open Domain
 
-let interpret (mp3File: Input) = 
-    let path = mp3File.Path + mp3File.File
-    printfn "%A" path
-    let file = TagLib.File.Create(path);
+let interpret (mp3File: Mp3File) = 
+    let (Mp3File name) = mp3File
+    let file = TagLib.File.Create(name);
     let id3 = { Title = file.Tag.Title;
                 Album = file.Tag.Album;
                 Year = file.Tag.Year;
