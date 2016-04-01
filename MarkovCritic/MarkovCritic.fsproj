@@ -60,7 +60,6 @@
     <Compile Include="Loader.fs" />
     <Compile Include="Evaluate.fs" />
     <None Include="MarkovProto.fsx" />
-    <None Include="CorpusScraper.fsx" />
     <None Include="App.config" />
     <Compile Include="Critiquer.fs" />
     <Content Include="packages.config" />

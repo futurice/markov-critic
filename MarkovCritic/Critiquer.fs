@@ -70,26 +70,27 @@ let getFreqTable (input_corpus : seq<String>) : Map<string, List<MarkovPair>> =
                     |> Map.ofList
     
 let run =    
-    let input_corpus = seq[ """It doesn't necessarily do it in chronological order, though. 
-The history of the Galaxy has got a little muddled, for a
-number of reasons: partly because those who are trying to keep
-track of it have got a little muddled, but also because some very
-muddling things have been happening anyway."""; 
-"""It doesn't necessarily do it in chronological order, though. 
-The history of the Galaxy has got a little muddled, for a
-number of reasons: partly because those who are trying to keep
-track of it have got a little muddled, but also because some very
-muddling things have been happening anyway. for for for for"""]
+    let input_corpus = seq[ """Loaded with dazzling action but bereft of purpose, the Point Break remake will be remembered as the first film to make audiences pine for the simultaneous presences of Keanu Reeves and Gary Busey.
+ove sees writer-director Gaspar Noé delivering some of his warmest and most personal work; unfortunately, it's also among his most undeveloped and least compelling.
+In some respects, Alvin and the Chipmunks: The Road Chip is a marginal improvement over prior installments, although this in no way qualifies as a recommendation.
+Kristen Wiig's vibrant performance is almost worth the price of admission -- and it has to be, because Hateship Loveship doesn't have much else going for it. 
+Despite its impressive cast and some sharp observations, A.C.O.D. is neither funny enough nor poignant enough to work as a potent comedy or incisive satire. 
+Colour Me Kubrick has a fascinating premise, but provides little insight into Kubrick and the man who impersonated him. 
+Shallow script, weak direction. 
+ Hathaway is a charming heroine, but the simple storyline gets overwhelmed by silly gimmickry. 
+ Jurassic Park III is darker and faster than its predecessors, but that doesn't quite compensate for the franchise's continuing creative decline. 
+ Gruesome, explicit and highly controversial; Lars Von Triers arthouse-horror, though beautifully shot, is no easy ride. 
+ A too-short script and a romance lacking in heat detracts from an otherwise haughty charmer. 
+ It's colorful and amiable enough, and Depp's heart is clearly in the right place, but The Rum Diary fails to add sufficient focus to its rambling source material. 
+ John Huston proves an odd choice to direct, miring Annie in a sluggish, stagebound mess of an adaptation, but the kids are cute and the songs are memorable. """]
 
-    let freq_table = getFreqTable input_corpus                       
+    let freq_table = getFreqTable input_corpus                                   
+
     
-    //just printing  
-    printfn "Frequency table:"              
-    freq_table |> Map.iter (fun key value -> printfn "\tKey: %s, Value: %A" key value) 
-
     let startingState = getRandomValue freq_table |> getRandomWord
     let markov_chain = generateMarkovChain freq_table startingState [] 10
-
     printfn "Markov chain: %A" markov_chain
+    
+    Console.ReadKey() |> ignore
 
     ()  
