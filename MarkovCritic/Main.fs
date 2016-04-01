@@ -4,15 +4,21 @@ open ParameterParser
 open Loader
 open Evaluate
 open Opinioner
+open Domain
+open Player
 
 let main argv = 
-    let parametersResult = 
-        argv
-        |> List.ofArray
-        |> parseCommandLine
-        |> Option.map evaluate
-        |> Option.bind Async.RunSynchronously
-        |> makeOpinion
+    let rec loop = function
+        | x::xs -> x |> evaluate
+                     |> Async.RunSynchronously
+                     |> makeOpinion
+                     |> printf "%A: "
+                   play x
+                   loop xs
+        | [] -> ()
 
-   // Critiquer.run
-    printfn "%A" parametersResult
+    argv |> List.ofArray
+         |> parseCommandLine
+         |> Option.map (fun { Path = p } -> p)
+         |> Option.map Directory.listMp3Files
+         |> Option.map loop

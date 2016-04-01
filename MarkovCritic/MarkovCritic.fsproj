@@ -57,6 +57,8 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Domain.fs" />
     <Compile Include="Spotify.fs" />
+    <Compile Include="Player.fs" />
+    <Compile Include="Directory.fs" />
     <Compile Include="Loader.fs" />
     <Compile Include="Evaluate.fs" />
     <Compile Include="Opinioner.fs" />
