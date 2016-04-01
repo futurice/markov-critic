@@ -1,7 +1,7 @@
-﻿open Markov
+﻿open Critiquer
 
 [<EntryPoint>]
 let main argv = 
-    Markov.run
+    Critiquer.run
     printfn "%A" argv
     0 // return an integer exit code
