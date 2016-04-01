@@ -1,9 +1,7 @@
 ﻿module Domain
 
 type Id3 = { Title: string;
-             Album: string;
-             Year: uint32;
-             Performers: string option}
+             Performer: string option}
 
 type SpotifyMetadata = { Title: string; 
                          Artist: string;
