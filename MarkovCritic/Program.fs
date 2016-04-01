@@ -1,7 +1,12 @@
-﻿open Critiquer
+﻿// Learn more about F# at http://fsharp.net
+// See the 'F# Tutorial' project for more help.
+
+open Main
+open System
+open Critiquer
 
 [<EntryPoint>]
 let main argv = 
-    Critiquer.run
-    printfn "%A" argv
-    0 // return an integer exit code
+    let result = Main.main argv
+    //Console.ReadKey() |> ignore
+    0

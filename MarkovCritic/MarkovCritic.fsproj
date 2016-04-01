@@ -59,9 +59,12 @@
     <Compile Include="Spotify.fs" />
     <Compile Include="Loader.fs" />
     <Compile Include="Evaluate.fs" />
+    <Compile Include="Opinioner.fs" />
+    <Compile Include="ParameterParser.fs" />
+    <Compile Include="Critiquer.fs" />
+    <Compile Include="Main.fs" />
     <None Include="MarkovProto.fsx" />
     <None Include="App.config" />
-    <Compile Include="Critiquer.fs" />
     <Content Include="packages.config" />
     <None Include="Test.fsx" />
     <Compile Include="Program.fs" />

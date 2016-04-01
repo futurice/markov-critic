@@ -11,3 +11,11 @@ type SpotifyMetadata = { Title: string;
 
 type Mp3 = { Id3: Id3;
              Duration: System.TimeSpan }
+
+type Input = { File: string;
+               Path: string; }
+
+type Opinion = 
+         | Wow
+         | Meh
+         | Ugh
