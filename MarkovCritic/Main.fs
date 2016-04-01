@@ -3,6 +3,7 @@
 open ParameterParser
 open Loader
 open Evaluate
+open Opinioner
 
 let main argv = 
     let parametersResult = 
@@ -11,6 +12,7 @@ let main argv =
         |> parseCommandLine
         |> Option.map evaluate
         |> Option.bind Async.RunSynchronously
+        |> makeOpinion
 
    // Critiquer.run
     printfn "%A" parametersResult

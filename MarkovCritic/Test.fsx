@@ -7,7 +7,7 @@
 #load "Evaluate.fs"
 #load "ParameterParser.fs"
 #load "Critiquer.fs"
-#load "Main.fs"
+
 
 open NAudio;
 open NAudio.Wave;
@@ -21,12 +21,12 @@ let list = [@"C:\Users\Tomasz\OneDrive\Music\Linkin Park - Roads Untraveled.mp3"
         //    @"C:\Users\Tomasz\OneDrive\Music\Ram Jam Black Betty.mp3";
             @"D:\temp\01 Once Upon a Time.mp3" ]
 
-list |> List.map Loader.interpret 
-
-list |> List.map Evaluate.evaluate
-     |> Async.Parallel
-     |> Async.RunSynchronously
-     |> Array.choose id
-
-Main.main [|"-f"; "01 Once Upon a Time.mp3"; "-p" ; @"D:\temp\"|]
+//list |> List.map Loader.interpret 
+//
+//list |> List.map Evaluate.evaluate
+//     |> Async.Parallel
+//     |> Async.RunSynchronously
+//     |> Array.choose id
+//
+//Main.main [|"-f"; "01 Once Upon a Time.mp3"; "-p" ; @"D:\temp\"|]
 

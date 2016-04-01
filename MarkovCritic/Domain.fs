@@ -14,3 +14,8 @@ type Mp3 = { Id3: Id3;
 
 type Input = { File: string;
                Path: string; }
+
+type Opinion = 
+         | Wow
+         | Meh
+         | Ugh

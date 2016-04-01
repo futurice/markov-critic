@@ -59,6 +59,7 @@
     <Compile Include="Spotify.fs" />
     <Compile Include="Loader.fs" />
     <Compile Include="Evaluate.fs" />
+    <Compile Include="Opinioner.fs" />
     <Compile Include="ParameterParser.fs" />
     <Compile Include="Critiquer.fs" />
     <Compile Include="Main.fs" />
