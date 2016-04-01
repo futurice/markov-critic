@@ -19,11 +19,13 @@ let private format =  """
 """
 type private Provider = JsonProvider<format>
 
-let search title performerOption= 
-    async { let! response =
+let search title performerOption = 
+    async { 
+            printfn "Loading started"
+            let! response =
              Http.AsyncRequestString ("https://api.spotify.com/v1/search",
                                       query = [ "q", title; "type", "track"; "limit", "20" ])
-
+            printfn "Loading finished"
             let getPairs json = 
                 let test = Provider.Parse(json)
                 seq { for record in test.Tracks.Items do 
