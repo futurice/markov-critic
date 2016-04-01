@@ -22,7 +22,7 @@ type private Provider = JsonProvider<format>
 let search title = 
     async { let! response =
              Http.AsyncRequestString ("https://api.spotify.com/v1/search",
-                                      query = [ "q", title; "type", "track"; "limit", "5" ])
+                                      query = [ "q", title; "type", "track"; "limit", "10" ])
 
             let getPairs json = 
                 let test = Provider.Parse(json)
@@ -31,5 +31,5 @@ let search title =
                                 Artist = record.Artists.[0].Name;
                                 Popularity = record.Popularity }  }
 
-            return getPairs response |> Seq.toList
+            return getPairs response |> Seq.toList |> List.sortBy (fun it -> -it.Popularity)
         } 

@@ -3,13 +3,15 @@
 #r "../packages/FSharp.Data.2.2.5/lib/net40/FSharp.Data.dll"
 #load "Domain.fs"
 #load "Loader.fs"
+#load "Spotify.fs"
 
 open NAudio;
 open NAudio.Wave;
 open FSharp.Data;
 open TagLib;
 open Domain
+open Spotify
 
-let test = query "baby" |> Async.RunSynchronously 
+let test = search "Yellow submarine" |> Async.RunSynchronously 
 
 
