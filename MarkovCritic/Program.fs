@@ -7,5 +7,5 @@ open Critiquer
 
 [<EntryPoint>]
 let main argv = 
-    let result = Main.main argv ((fun () -> Console.ReadKey()) >> ignore)
+    let result = Main.main argv
     0

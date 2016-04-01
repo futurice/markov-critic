@@ -5,15 +5,15 @@ open Loader
 open Evaluate
 open Opinioner
 open Domain
+open Player
 
-let main argv (pause: Unit -> Unit) = 
-
+let main argv = 
     let rec loop = function
         | x::xs -> x |> evaluate
                      |> Async.RunSynchronously
                      |> makeOpinion
-                     |> printfn "%A"
-                   pause()
+                     |> printf "%A: "
+                   play x
                    loop xs
         | [] -> ()
 
