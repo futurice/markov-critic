@@ -47,12 +47,12 @@ let toMarkovPairs list : List<MarkovPair> =
     markovPairs       
     
 
-let rec generateMarkovChain (table : Map<string, List<MarkovPair>>) (key : string) (words : List<string>) (limit : int) =         
+let rec generateMarkovChain (table : Map<string, List<MarkovPair>>) (key : string) (words : List<string>) (limit : int) =            
+    let randomWord = getRandomWord table.[key]    
     if words.Length < limit then
-        let randomWord = getRandomWord table.[key]        
         generateMarkovChain table randomWord (words @ [randomWord]) limit
     else
-        words    
+        words
                    
 let getFreqTable (input_corpus : seq<String>) : Map<string, List<MarkovPair>> = 
     let tokens = input_corpus |> Seq.collect (fun line -> 

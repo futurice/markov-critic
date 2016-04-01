@@ -45,12 +45,10 @@ let toMarkovPairs list : List<MarkovPair> =
     markovPairs       
     
 
-let rec generateMarkovChain (table : Map<string, List<MarkovPair>>) (key : string) (words : List<string>) (limit : int) =     
-       
-    let randomWord = getRandomWord table.[key]
-    let words = words |> List.append [randomWord]
+let rec generateMarkovChain (table : Map<string, List<MarkovPair>>) (key : string) (words : List<string>) (limit : int) =            
+    let randomWord = getRandomWord table.[key]    
     if words.Length < limit then
-        generateMarkovChain table randomWord words limit
+        generateMarkovChain table randomWord (words @ [randomWord]) limit
     else
         words
                    
