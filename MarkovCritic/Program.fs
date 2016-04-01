@@ -8,5 +8,5 @@ open Critiquer
 [<EntryPoint>]
 let main argv = 
     let result = Main.main argv
-    Console.ReadKey() |> ignore
+    //Console.ReadKey() |> ignore
     0

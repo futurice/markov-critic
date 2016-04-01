@@ -1,7 +1,7 @@
 ﻿module Spotify
 
 open Domain
-open FSharp.Data;
+open FSharp.Data
 
 [<Literal>]
 let private format =  """
@@ -36,7 +36,7 @@ let search title performerOption =
             let sameAuthor author =
                 let toUpperCase (str: string) = str.ToUpper();
                 performerOption |> Option.map toUpperCase
-                                |> Option.filter ((=) (toUpperCase author))
+                                |> Option.filter ((toUpperCase >> (=)) author)
                                 |> Option.isSome
 
             return getPairs response |> Seq.toList 
