@@ -8,6 +8,6 @@ let interpret (mp3File: string) =
     let id3 = { Title = file.Tag.Title;
                 Album = file.Tag.Album;
                 Year = file.Tag.Year;
-                Performers = Array.toList file.Tag.Performers}
+                Performers = Array.tryHead file.Tag.Performers }
 
     {Id3 = id3; Duration = file.Properties.Duration}

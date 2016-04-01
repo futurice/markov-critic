@@ -3,7 +3,7 @@
 type Id3 = { Title: string;
              Album: string;
              Year: uint32;
-             Performers: string list}
+             Performers: string option}
 
 type SpotifyMetadata = { Title: string; 
                          Artist: string;

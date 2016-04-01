@@ -59,7 +59,7 @@
     <Compile Include="Domain.fs" />
     <Compile Include="Spotify.fs" />
     <Compile Include="Loader.fs" />
-    <Compile Include="Analyzer.fs" />
+    <Compile Include="Evaluate.fs" />
     <Compile Include="Critiquer.fs" />
     <Compile Include="Program.fs" />
     <None Include="MarkovProto.fsx" />
