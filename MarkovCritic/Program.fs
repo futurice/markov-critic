@@ -9,5 +9,5 @@ open Domain
 [<EntryPoint>]
 let main argv = 
     let result = Main.main argv
-    //Critiquer.run Opinion.Ugh
+    //CorpusGenerator.run Opinion.Wow
     0

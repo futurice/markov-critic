@@ -10,14 +10,15 @@ type MarkovPair = {
     Cumulative : double;
 }
 
-let rec split (values : List<string * string>) (list : List<string>) : List<(string * string)> =
+let rec split (values : List<string * string * string>) (list : List<string>) : List<(string * string * string)> =
     match list with
-    | x::y::xs -> split ((x,y) :: values) (y :: xs)
+    | x::y::z::xs -> split ((x,y,z) :: values) (z :: xs)
     | _ -> values
 
-let matched (x : string) (pairs : List<(string * string)>) =
-        pairs |> List.filter ( fun (xx, _) -> x = xx ) 
-              |> List.map (fun (_, yy) -> yy)
+let matched (x : string * string) (triples : List<(string * string * string)>) =
+       let filtered = triples |> List.filter ( fun (xx, yy, _) -> x = (xx, yy) ) 
+       let mapped = filtered |> List.map (fun (_, __, yy) -> yy)
+       mapped
 
 let frequency (value:string) (list:List<string>) : Option<(string * float)> =
     list |> List.filter ((=) value)
@@ -35,7 +36,7 @@ let toMarkovPairs list : List<MarkovPair> =
                                     ({Word = word; Frequency = freq; Cumulative = state + freq},state + freq)) 0.0 
     markovPairs  
 
-let getFreqTable (input_corpus : seq<string>) : Map<string, List<MarkovPair>> = 
+let getFreqTable (input_corpus : seq<string>) : Map<string * string, List<MarkovPair>> = 
     let tokens = input_corpus |> Seq.collect (fun line ->                                     
                                     line.Replace(".", " ")
                                         .Replace("!", " ")
@@ -45,10 +46,11 @@ let getFreqTable (input_corpus : seq<string>) : Map<string, List<MarkovPair>> =
                                         .Replace("\r\n", " ")
                                         .Split([|" "|], StringSplitOptions.RemoveEmptyEntries))   
 
-    let pairs = split [] (Seq.toList tokens)            
-    pairs |> List.map(fun (x, _) -> x, matched x pairs)        
-                    |> List.map(fun (x, y) -> x, (toMarkovPairs y)) 
-                    |> Map.ofList      
+    let triples = split [] (Seq.toList tokens)            
+    let tries = triples |> List.map(fun (x, y, _) -> (x,y), matched (x,y) triples)        
+    let markovPairs = tries |> List.map(fun (x, y) -> x, (toMarkovPairs y)) 
+
+    markovPairs |> Map.ofList      
 
 
 let run opinion =
