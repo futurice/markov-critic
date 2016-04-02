@@ -9,6 +9,5 @@ open Domain
 [<EntryPoint>]
 let main argv = 
     let result = Main.main argv
-    Critiquer.run Opinion.Ugh
-    Console.ReadKey() |> ignore
+    //Critiquer.run Opinion.Ugh
     0

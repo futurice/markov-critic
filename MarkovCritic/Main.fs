@@ -8,11 +8,12 @@ open Domain
 open Player
 
 let main argv = 
+    let tables = Critiquer.getFreqTables
     let rec loop = function
         | x::xs -> x |> evaluate
                      |> Async.RunSynchronously
                      |> makeOpinion
-                     |> Critiquer.run
+                     |> Critiquer.run tables
                      |> Presenter.present
                      |> play x
 
