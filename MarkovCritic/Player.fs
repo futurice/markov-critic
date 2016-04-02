@@ -4,6 +4,10 @@ open NAudio;
 open NAudio.Wave;
 open Domain
 
+let speak (description: string) = 
+    use something = new System.Speech.Synthesis.SpeechSynthesizer()
+    something.Speak description
+
 let play mp3File description = 
     use wo = new NAudio.Wave.WaveOut()
     let (Mp3File name) = mp3File
@@ -12,4 +16,6 @@ let play mp3File description =
     use audioFileReader = new AudioFileReader(name);
     wo.Init(audioFileReader);
     wo.Play();
-    System.Console.ReadKey() |> ignore
+    System.Console.ReadLine() |> ignore
+    description
+
