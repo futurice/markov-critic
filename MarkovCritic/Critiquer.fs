@@ -52,13 +52,18 @@ let toMarkovPairs list : List<MarkovPair> =
     markovPairs       
     
 
-let rec generateMarkovChain (table : Map<string, List<MarkovPair>>) (key : string) (words : List<string>) (limit : int) =                
-    let randomWord = getRandomWord table.[key]        
-    if words.Length < limit then
-        //todo: if the key is the last element in any of the corpora, pick a new key. otherwise, we crash. oops.        
-        generateMarkovChain table randomWord (words @ [randomWord]) limit
-    else
-        words
+let rec generateMarkovChain (table : Map<string, List<MarkovPair>>) (key : string) (words : List<string>) (limit : int) =     
+    let hasKey = table.ContainsKey(key)
+    match hasKey with
+        | true ->                
+            if words.Length < limit then
+                let randomWord = getRandomWord table.[key]                
+                generateMarkovChain table randomWord (words @ [randomWord]) limit
+            else
+                words
+        | false ->
+            //if the table doesn't contain the key, just get a new random and try again
+            generateMarkovChain table (getRandomValue table |> getRandomWord) words limit 
                    
 let getFreqTable (input_corpus : seq<String>) : Map<string, List<MarkovPair>> = 
     let tokens = input_corpus |> Seq.collect (fun line ->                                     
@@ -774,10 +779,10 @@ let run opinion =
         let startingState = getRandomValue freq_table |> getRandomWord        
         let markov_chain = generateMarkovChain freq_table startingState [startingState] 15                                          
                          |> List.reduce(fun state input -> state + " " + input)
-                         |> (fun x -> x.Replace(" .", ".")
-                                       .Replace(" ,", ",")
-                                       .Replace(" !", "!")
-                                       .Replace(" ?", "?"))
+//                         |> (fun x -> x.Replace(".", ".")
+//                                       .Replace(" ,", ",")
+//                                       .Replace(" !", "!")
+//                                       .Replace(" ?", "?"))
                          |> capitalize                     
                          |> (fun x -> if not <| (punctuation |> List.contains (x.[x.Length - 1].ToString())) then (x + ".") else x)
 
