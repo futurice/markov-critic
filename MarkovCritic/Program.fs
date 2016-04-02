@@ -10,6 +10,6 @@ open Domain
 let main argv = 
     //let result = Main.main argv
     //Critiquer.run Opinion.Ugh
-    CorpusGenerator.run
+    CorpusGenerator.run Opinion.Meh
     Console.ReadKey() |> ignore
     0

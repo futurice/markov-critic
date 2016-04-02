@@ -54,6 +54,24 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Content Include="good-reviews.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bad-reviews.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="meh-reviews.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="UghTable.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MehTable.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="WowTable.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Domain.fs" />
     <Compile Include="Spotify.fs" />
@@ -65,7 +83,6 @@
     <Compile Include="ParameterParser.fs" />
     <Compile Include="Critiquer.fs" />
     <Compile Include="Main.fs" />
-    <None Include="MarkovProto.fsx" />
     <None Include="App.config" />
     <Content Include="packages.config" />
     <None Include="Test.fsx" />
