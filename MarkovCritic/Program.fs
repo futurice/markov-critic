@@ -8,7 +8,8 @@ open Domain
 
 [<EntryPoint>]
 let main argv = 
-    let result = Main.main argv
-    Critiquer.run Opinion.Ugh
+    //let result = Main.main argv
+    //Critiquer.run Opinion.Ugh
+    CorpusGenerator.run
     Console.ReadKey() |> ignore
     0
