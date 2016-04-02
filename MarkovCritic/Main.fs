@@ -16,7 +16,6 @@ let main argv =
                      |> Critiquer.run tables
                      |> Presenter.present
                      |> play x 
-                     |> speak
 
                    loop xs
         | [] -> ()

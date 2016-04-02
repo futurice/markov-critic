@@ -17,5 +17,4 @@ let play mp3File description =
     wo.Init(audioFileReader);
     wo.Play();
     System.Console.ReadLine() |> ignore
-    description
 
