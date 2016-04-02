@@ -3,7 +3,7 @@
 open Domain
 
 let makeOpinion = function
-    | Some { Popularity = popularity } when popularity >= 50 -> 
+    | Some { Popularity = popularity } when popularity >= 40 -> 
         Wow
     | Some _ ->
         Ughhh
