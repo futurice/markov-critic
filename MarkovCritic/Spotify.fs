@@ -39,6 +39,5 @@ let search title performerOption =
                                 |> Option.isSome
 
             return getPairs response |> Seq.toList 
-                                     |> List.sortBy (fun it -> it.Popularity)
                                      |> List.tryFind (fun it -> sameAuthor it.Artist )
         } 
