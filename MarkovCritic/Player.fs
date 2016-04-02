@@ -5,8 +5,8 @@ open NAudio.Wave;
 open Domain
 
 let speak (description: string) = 
-    use something = new System.Speech.Synthesis.SpeechSynthesizer()
-    something.Speak description
+    async  { use something = new System.Speech.Synthesis.SpeechSynthesizer()
+             something.Speak description } |> Async.RunSynchronously
 
 let play mp3File description = 
     use wo = new NAudio.Wave.WaveOut()
@@ -17,4 +17,5 @@ let play mp3File description =
     wo.Init(audioFileReader);
     wo.Play();
     System.Console.ReadLine() |> ignore
+    description
 

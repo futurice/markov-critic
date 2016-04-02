@@ -15,7 +15,7 @@ type Input = { Path: string; }
 type Opinion = 
          | Wow
          | Meh
-         | Ugh
+         | Ughhh
 
 type Mp3File = Mp3File of string
 

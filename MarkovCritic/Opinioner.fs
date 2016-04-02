@@ -6,7 +6,7 @@ let makeOpinion = function
     | Some { Popularity = popularity } when popularity >= 50 -> 
         Wow
     | Some _ ->
-        Ugh
+        Ughhh
     | None -> 
         Meh
         
