@@ -774,10 +774,9 @@ let run opinion =
                      | Wow -> getFreqTable wowCorpus
                      | Meh -> getFreqTable mehCorpus
                      | Ugh -> getFreqTable ughCorpus
-    
-    while true do
-        let startingState = getRandomValue freq_table |> getRandomWord        
-        let markov_chain = generateMarkovChain freq_table startingState [startingState] 15                                          
+
+    let startingState = getRandomValue freq_table |> getRandomWord        
+    let markov_chain = generateMarkovChain freq_table startingState [startingState] 15                                          
                          |> List.reduce(fun state input -> state + " " + input)
 //                         |> (fun x -> x.Replace(".", ".")
 //                                       .Replace(" ,", ",")
@@ -786,8 +785,4 @@ let run opinion =
                          |> capitalize                     
                          |> (fun x -> if not <| (punctuation |> List.contains (x.[x.Length - 1].ToString())) then (x + ".") else x)
 
-        printfn "%A" markov_chain         
-    Console.ReadKey() |> ignore              
-    
-
-    ()  
+    { Opinion = opinion ; Critique = markov_chain }         

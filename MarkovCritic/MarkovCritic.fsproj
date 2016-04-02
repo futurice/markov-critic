@@ -64,6 +64,7 @@
     <Compile Include="Opinioner.fs" />
     <Compile Include="ParameterParser.fs" />
     <Compile Include="Critiquer.fs" />
+    <Compile Include="Presenter.fs" />
     <Compile Include="Main.fs" />
     <None Include="MarkovProto.fsx" />
     <None Include="App.config" />

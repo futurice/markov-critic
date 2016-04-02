@@ -12,8 +12,10 @@ let main argv =
         | x::xs -> x |> evaluate
                      |> Async.RunSynchronously
                      |> makeOpinion
-                     |> printf "%A: "
-                   play x
+                     |> Critiquer.run
+                     |> Presenter.present
+                     |> play x
+
                    loop xs
         | [] -> ()
 

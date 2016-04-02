@@ -18,3 +18,6 @@ type Opinion =
          | Ugh
 
 type Mp3File = Mp3File of string
+
+type Critique = { Opinion: Opinion;
+                  Critique: string }
