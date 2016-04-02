@@ -32,12 +32,17 @@ let search title performerOption =
                                 Artist = record.Artists.[0].Name;
                                 Popularity = record.Popularity }  }
 
+            let pri x =
+                printfn "%A %A" performerOption x
+                x
+
             let sameAuthor author =
                 let toUpperCase (str: string) = str.ToUpper();
                 performerOption |> Option.map toUpperCase
                                 |> Option.filter ((toUpperCase >> (=)) author)
                                 |> Option.isSome
 
-            return getPairs response |> Seq.toList 
-                                     |> List.tryFind (fun it -> sameAuthor it.Artist )
+            return response |> getPairs  
+                            |> Seq.toList 
+                            |> List.tryFind (fun it -> sameAuthor it.Artist )
         } 
