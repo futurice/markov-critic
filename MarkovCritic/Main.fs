@@ -6,6 +6,7 @@ open Evaluate
 open Opinioner
 open Domain
 open Player
+open CorpusGenerator
 
 let main argv = 
     let tables = Critiquer.getFreqTables
@@ -16,13 +17,25 @@ let main argv =
                      |> Critiquer.run tables
                      |> Presenter.present
                      |> play x 
-                     //|> speak
+                     |> speak
 
                    loop xs
         | [] -> ()
 
-    argv |> List.ofArray
-         |> parseCommandLine
-         |> Option.map (fun { Path = p } -> p)
-         |> Option.map Directory.listMp3Files
-         |> Option.map loop
+    
+        
+
+    let parsedArgs = argv |> List.ofArray
+                    |> parseCommandLine
+
+    parsedArgs |> (fun x -> 
+        match x with
+        | Some(input) -> match input.GenerateQuality with
+                         | Some(op) -> CorpusGenerator.run op                        
+                         | None -> parsedArgs |> Option.map (fun { Path = p } -> p)
+                                              |> Option.map Directory.listMp3Files
+                                              |> (fun x -> if x.IsSome then loop x.Value)
+        | None -> ())
+        
+
+    

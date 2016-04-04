@@ -83,11 +83,11 @@
     <Compile Include="ParameterParser.fs" />
     <Compile Include="Critiquer.fs" />
     <Compile Include="Presenter.fs" />
+    <Compile Include="CorpusGenerator.fs" />
     <Compile Include="Main.fs" />
     <None Include="App.config" />
     <Content Include="packages.config" />
     <None Include="Test.fsx" />
-    <Compile Include="CorpusGenerator.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,12 +10,12 @@ type SpotifyMetadata = { Title: string;
 type Mp3 = { Id3: Id3;
              Duration: System.TimeSpan }
 
-type Input = { Path: string; }
-
 type Opinion = 
          | Wow
          | Meh
-         | Ughhh
+         | Ugh
+
+type Input = { Path: string; GenerateQuality : Option<Opinion> }
 
 type Mp3File = Mp3File of string
 

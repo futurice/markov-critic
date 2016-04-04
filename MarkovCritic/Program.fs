@@ -8,6 +8,5 @@ open Domain
 
 [<EntryPoint>]
 let main argv = 
-    let result = Main.main argv
-    //CorpusGenerator.run Opinion.Wow
+    let result = Main.main argv    
     0

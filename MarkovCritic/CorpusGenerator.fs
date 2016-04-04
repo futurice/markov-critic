@@ -10,7 +10,7 @@ type MarkovPair = {
     Cumulative : double;
 }
 
-let rec split (values : List<string * string * string>) (list : List<string>) : List<(string * string * string)> =
+let rec split (values : List<string * string * string>) (list : List<string>) : List<(string * string * string)> =   
     match list with
     | x::y::z::xs -> split ((x,y,z) :: values) (z :: xs)
     | _ -> values
@@ -27,30 +27,30 @@ let frequency (value:string) (list:List<string>) : Option<(string * float)> =
     |> Option.map (fun (key, count) -> key, 100.0 * ( float count / float list.Length ))
 
 let toMarkovPairs list : List<MarkovPair> =
-    let (markovPairs, endFreq) = list 
-                                |> List.distinct 
-                                |> List.map(fun x -> frequency x list)
-                                |> List.choose id
-                                |> List.mapFold(fun state x -> 
-                                    let (word, freq) = x                                    
-                                    ({Word = word; Frequency = freq; Cumulative = state + freq},state + freq)) 0.0 
-    markovPairs  
+    list 
+    |> List.distinct 
+    |> List.map(fun x -> frequency x list)
+    |> List.choose id
+    |> List.mapFold(fun state x -> 
+        let (word, freq) = x                                    
+        ({Word = word; Frequency = freq; Cumulative = state + freq},state + freq))
+        0.0 
+    |> fst    
 
-let getFreqTable (input_corpus : seq<string>) : Map<string * string, List<MarkovPair>> = 
-    let tokens = input_corpus |> Seq.collect (fun line ->                                     
-                                    line.Replace(".", " ")
-                                        .Replace("!", " ")
-                                        .Replace("?", " ")
-                                        .Replace("\n", " ")
-                                        .Replace("\r", " ")
-                                        .Replace("\r\n", " ")
-                                        .Split([|" "|], StringSplitOptions.RemoveEmptyEntries))   
-
+let getFreqTable (inp : seq<string>) : Map<string * string, List<MarkovPair>> = 
+    let tokens = inp 
+                |> Seq.collect (fun line -> 
+                    line.Replace(".", " ")
+                        .Replace("!", " ")
+                        .Replace("?", " ")
+                        .Replace("\n", " ")
+                        .Replace("\r", " ")
+                        .Replace("\r\n", " ")
+                        .Split([|" "|], StringSplitOptions.RemoveEmptyEntries))   
     let triples = split [] (Seq.toList tokens)            
-    let tries = triples |> List.map(fun (x, y, _) -> (x,y), matched (x,y) triples)        
-    let markovPairs = tries |> List.map(fun (x, y) -> x, (toMarkovPairs y)) 
-
-    markovPairs |> Map.ofList      
+    triples |> List.map(fun (x, y, _) -> (x,y), matched (x,y) triples)        
+            |> List.map(fun (x, y) -> x, (toMarkovPairs y)) 
+            |> Map.ofList      
 
 
 let run opinion =

@@ -56,7 +56,7 @@ let run (w, m, u) opinion =
     let freq_table = match opinion with
                      | Wow -> w
                      | Meh -> m
-                     | Ughhh -> u
+                     | Ugh -> u
         
     let startingState = getRandomValue freq_table |> getRandomWord        
     let markov_chain = generateMarkovChain freq_table startingState [startingState] 15                                          
