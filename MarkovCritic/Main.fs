@@ -8,9 +8,8 @@ open Domain
 open Player
 open CorpusGenerator
 
-let main argv = 
-    let tables = Critiquer.getFreqTables
-    let rec loop = function
+let main argv =     
+    let rec loop tables = function
         | x::xs -> x |> evaluate
                      |> Async.RunSynchronously
                      |> makeOpinion
@@ -19,7 +18,7 @@ let main argv =
                      |> play x 
                      |> speak
 
-                   loop xs
+                   loop tables xs
         | [] -> ()
 
     
@@ -34,7 +33,9 @@ let main argv =
                          | Some(op) -> CorpusGenerator.run op                        
                          | None -> parsedArgs |> Option.map (fun { Path = p } -> p)
                                               |> Option.map Directory.listMp3Files
-                                              |> (fun x -> if x.IsSome then loop x.Value)
+                                              |> (fun x -> if x.IsSome then 
+                                                                         let tables = Critiquer.getFreqTables
+                                                                         loop tables x.Value)
         | None -> ())
         
 
