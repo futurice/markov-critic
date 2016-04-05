@@ -1,13 +1,13 @@
 #Markov Critic
-An F# program that uses Markov Chains and Spotify's API to rate to deliver music reviews.
+An F# program that uses Markov Chains and Spotify's API to deliver music reviews.
 
 ##Building
-Currently only builds on Windows .NET, due to a dependency on `System.Speech` in  for reading the reviews allowed. If that functionality is removed, building on Mono should work.
+Currently only builds on Windows .NET, due to a dependency on `System.Speech` for reading the reviews aloud. If that functionality is removed, building on Mono should work.
 
 ##Usage
 ###Running
 
-Just invoke `MarkovCritic.exe`. It will look in the `.exe`'s directory for any MP3 files, and issue judgments on them.
+Just invoke `MarkovCritic.exe`. It will look in the executable's directory for any MP3 files, and issue judgments on them.
 
 ###Customizing
 By default, the program uses three pre-generated frequency tables to generate its reviews. They are `WowTable.json`, `MehTable.json` and `UghTable.json`. These are included with the project (in the `/resources` folder), and placed in the output `bin` directory when the project is built. 
